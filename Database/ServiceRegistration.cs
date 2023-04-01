@@ -1,6 +1,8 @@
 ﻿using Application.Interfaces.Repositories;
 using Database.Context;
 using Database.Repository;
+using ECommerce.Application.Interfaces.Repositories;
+using ECommerce.Database.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,6 +30,8 @@ namespace Database
 
             //Inyeccion de dependencia con los servicios genericos
             services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
             
         }
     }

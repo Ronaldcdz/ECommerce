@@ -1,10 +1,11 @@
 using Database;
+using ECommerce.Application;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-
+builder.Services.AddApplicationLayer();
 builder.Services.AddDatabaseLayer(builder.Configuration);
 
 builder.Services.AddControllersWithViews();

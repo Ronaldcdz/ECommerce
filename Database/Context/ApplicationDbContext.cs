@@ -1,4 +1,4 @@
-﻿using Database.Models;
+﻿using ECommerce.Application.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
