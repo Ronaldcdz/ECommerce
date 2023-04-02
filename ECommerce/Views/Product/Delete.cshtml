@@ -1,0 +1,34 @@
+﻿@using ECommerce.Application.ViewModels.Product
+@model SaveProductViewModel
+@{
+    ViewData["Title"] = "Borrar Producto";
+}
+
+<div class="row">
+
+    <div class="col-6 offset-3">
+
+        <div class="card">
+            <div class="card-header bg-danger text-light">
+                <h4>Esta seguro de que desea eliminar el siguiente producto? </h4>
+
+            </div>
+            <div class="card-body">
+
+                <h5 class="mb-3">"@Model.Name"</h5>
+
+                <form method="post" asp-controller="Product" asp-action="DeletePost">
+
+                    <input type="hidden" asp-for="Id" />
+
+                    <a asp-controller="Product" asp-action="Index" class="btn btn-warning">Cancelar</a>
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>

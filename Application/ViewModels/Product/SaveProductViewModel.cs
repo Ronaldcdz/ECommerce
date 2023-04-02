@@ -33,15 +33,15 @@ namespace ECommerce.Application.ViewModels.Product
         public double Price { get; set; }
 
 
-        [Required]
+        [Required(ErrorMessage = "Debe colocar la cantidad que hay de este producto")]
         [Range(1, int.MaxValue, ErrorMessage = "Debe colocar la cantidad existente de este producto")]
         public int Quantity { get; set; }
 
         [Required]
-        [Range(1, int.MaxValue, ErrorMessage = "Debe colocar la cantidad existente de este producto")]
+        [Range(1, int.MaxValue, ErrorMessage = "Debe seleccionar una categoria")]
         public int CategoryId { get; set; }
 
 
-        public List<CategoryViewModel>? Category { get; set; }
+        public List<CategoryViewModel>? Categories { get; set; }
     }
 }

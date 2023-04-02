@@ -17,7 +17,8 @@ namespace ECommerce.Application.ViewModels.Category
         public string Name { get; set; }
 
 
-        [Required(ErrorMessage = "Debe colocar el nombre de la categoria")]
+
+        [Required(ErrorMessage = "Debe colocar la descripcion de la categoria")]
         [StringLength(200)]
         [DataType(DataType.Text)]
         public string? Description { get; set; }

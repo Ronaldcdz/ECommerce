@@ -1,0 +1,59 @@
+﻿@using ECommerce.Application.ViewModels.Category
+@model List<CategoryViewModel>;
+
+@{
+    ViewData["Title"] = "Home - Category";
+}
+
+<div class="row mb-3">
+    <div class="col-3 offset-9">
+        <a class="btn btn-success" asp-controller="Category" asp-action="Create">Agregar Categoria</a>
+    </div>
+</div>
+
+
+<div class="row">
+
+    <div class="col-8 offset-2">
+        <div class="row">
+
+            @if (Model == null || Model.Count == 0)
+            {
+
+                <h2 class="mt-3">No hay categorias agregadas</h2>
+            }
+            else
+            {
+                <h3 class="text-center mb-3">Categorias</h3>
+
+
+                @foreach (CategoryViewModel category in Model)
+                {
+
+                    <div class="col-4">
+                        <div class="card shadow-sm mb-3">
+
+                            <div class="card-body">
+                                <h4>@category.Name</h4>
+                                <p class="card-text">Descripcion: @category.Description</p>
+
+
+                                <a asp-controller="Category" asp-action="Edit" asp-route-id="@category.Id" class="btn btn-warning">Editar</a>
+                                <a asp-controller="Category" asp-action="Delete" asp-route-id="@category.Id" class="btn btn-danger">Eliminar</a>
+
+
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            }
+
+
+
+
+
+        </div>
+    </div>
+
+</div>

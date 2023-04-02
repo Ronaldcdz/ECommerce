@@ -2,6 +2,7 @@
 using AutoMapper;
 using ECommerce.Application.Interfaces.Services;
 using ECommerce.Application.Models;
+using ECommerce.Application.ViewModels.Category;
 using ECommerce.Application.ViewModels.Product;
 using System;
 using System.Collections.Generic;
@@ -15,11 +16,13 @@ namespace ECommerce.Application.Services
     {
         private readonly IProductRepository _productRepository;
         private readonly IMapper _mapper;
+        private readonly ICategoryService _categoryService;
 
-        public ProductService(IProductRepository productRepository, IMapper mapper)
+        public ProductService(IProductRepository productRepository, IMapper mapper, ICategoryService categoryService)
         {
             _productRepository = productRepository;
             _mapper = mapper;
+            _categoryService = categoryService;
         }
 
         public async Task<SaveProductViewModel> AddAsync(SaveProductViewModel productViewModel)
@@ -55,7 +58,16 @@ namespace ECommerce.Application.Services
             return _mapper.Map<SaveProductViewModel>(product);
         }
 
+        public async Task<ProductDetailsViewModel> GetDetailsAsync(int id)
+        {
+            var product = await _productRepository.GetByIdAsync(id);
+            var productDetailsViewModel = _mapper.Map<ProductDetailsViewModel>(product);
 
+
+            productDetailsViewModel.Category = _mapper.Map<CategoryViewModel>(await _categoryService.GetByIdAsync(productDetailsViewModel.CategoryId));
+
+            return productDetailsViewModel;
+        }
 
     }
 }

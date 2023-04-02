@@ -16,7 +16,7 @@ namespace ECommerce.Application.Mapping
         {
 
             CreateMap<Product, SaveProductViewModel>()
-                .ForMember(x => x.Category, opt => opt.Ignore())
+                .ForMember(x => x.Categories, opt => opt.Ignore())
                 .ReverseMap()
                 .ForMember(x => x.Category, opt => opt.Ignore())
                 .ForMember(x => x.Orders, opt => opt.Ignore());
@@ -31,6 +31,14 @@ namespace ECommerce.Application.Mapping
                 .ForMember(x => x.Orders, opt => opt.Ignore());
 
 
+            CreateMap<Product, ProductDetailsViewModel>()
+                .ForMember(x => x.Category, opt => opt.Ignore())
+                .ReverseMap()
+                .ForMember(x => x.Category, opt => opt.Ignore())
+                .ForMember(x => x.Orders, opt => opt.Ignore());
+
+
+
             CreateMap<Category, CategoryViewModel>()
                 .ReverseMap()
                 .ForMember(x => x.Products, opt => opt.Ignore());
@@ -39,6 +47,9 @@ namespace ECommerce.Application.Mapping
             CreateMap<Category, SaveCategoryViewModel>()
                 .ReverseMap()
                 .ForMember(x => x.Products, opt => opt.Ignore());
+
+            CreateMap<CategoryViewModel, SaveCategoryViewModel>()
+                .ReverseMap();
 
         }
 

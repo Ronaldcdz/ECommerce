@@ -20,6 +20,7 @@ namespace ECommerce.Application
 
             
             services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<ICategoryService, CategoryService>();
         }
 
 

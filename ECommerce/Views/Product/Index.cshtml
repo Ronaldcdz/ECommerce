@@ -1,19 +1,29 @@
 ﻿@using ECommerce.Application.ViewModels.Product;
 
 @model List<ProductViewModel>
+
 @{
-    ViewData["Title"] = "Home Products";
+    ViewData["Title"] = "Productos";
 }
 
+<div class="row mb-3">
+    <div class="col-3 offset-9">
+        <a  class="btn btn-success" asp-controller="Product" asp-action="Create">Agregar Producto</a>
+    </div>
+</div>
+
 <div class="row">
-    
+
+
     <div class="col-10 offset-1">
+
         <div class="row">
+
 
             @if (Model == null || Model.Count == 0)
             {
 
-                <h2 class="mt-3">No hay productos agregados</h2>
+                <h2 class="mt-3">No hay productos que mostrar</h2>
             }
             else
             {
@@ -30,9 +40,8 @@
                                 <p class="card-text"><strong>Precio: </strong>@product.Price</p>
 
 
-                                <a asp-controller="Home" asp-action="Details" asp-route-id="@product.Id" class="btn btn-info">Detalle</a>
-                                <a asp-controller="" asp-action="" asp-route-id="@product.Id" class="btn btn-success">Comprar</a>
-
+                                <a asp-controller="Product" asp-action="Edit" asp-route-id="@product.Id" class="btn btn-warning">Editar</a>
+                                <a asp-controller="Product" asp-action="Delete" asp-route-id="@product.Id" class="btn btn-danger">Eliminar</a>
 
                             </div>
                         </div>
@@ -40,8 +49,6 @@
                 }
 
             }
-
-
 
 
 
