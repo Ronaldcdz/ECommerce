@@ -1,0 +1,55 @@
+﻿@using ECommerce.Application.ViewModels.Cart;
+@model List<CartViewModel>;
+@{
+    ViewData["Title"] = "Carrito";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            
+            <th></th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Sub-Total</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cart in Model)
+        {
+            <tr>
+                <td>
+                    <img class="bd-placeholder-img" width="100" height="100" src="@cart.ImagePath" />
+                </td>
+                <td>
+                    @cart.Name
+                </td>
+                <td>
+                    @cart.Price
+                </td>
+                <td>
+                    @cart.Quantity
+                </td>
+                <td>
+                    @cart.Subtotal
+                </td>
+                <td>
+                    <a class="btn btn-info" asp-controller="Cart" asp-action="IncrementOne" asp-route-id="@cart.ProductId">+</a>
+                    <a class="btn btn-danger" asp-controller="Cart" asp-action="MinusOne" asp-route-id="@cart.ProductId">-</a>
+
+                </td>
+                <td>
+                    <a class="btn btn-danger" asp-controller="Cart" asp-action="RemoveItem" asp-route-id="@cart.ProductId">Eliminar</a>
+                </td>
+            </tr>
+        }
+        <tr>
+            <td colspan="5" style="text-align:right">
+                Total: @ViewBag.total
+            </td>
+        </tr>
+    </tbody>
+</table>

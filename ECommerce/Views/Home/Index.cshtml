@@ -31,7 +31,7 @@
 
 
                                 <a asp-controller="Home" asp-action="Details" asp-route-id="@product.Id" class="btn btn-info">Detalle</a>
-                                <a asp-controller="" asp-action="" asp-route-id="@product.Id" class="btn btn-success">Comprar</a>
+                                <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@product.Id" class="btn btn-success">Agregar al carrito</a>
 
 
                             </div>

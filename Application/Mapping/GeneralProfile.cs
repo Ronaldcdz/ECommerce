@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ECommerce.Application.Models;
+using ECommerce.Application.ViewModels.Cart;
 using ECommerce.Application.ViewModels.Category;
 using ECommerce.Application.ViewModels.Product;
 using System;
@@ -50,6 +51,17 @@ namespace ECommerce.Application.Mapping
 
             CreateMap<CategoryViewModel, SaveCategoryViewModel>()
                 .ReverseMap();
+
+
+
+            CreateMap<CartViewModel, SaveProductViewModel>()
+                .ForMember(x => x.Id, opt => opt.MapFrom(p => p.ProductId))
+                .ForMember(x => x.CategoryId, opt => opt.Ignore())
+                .ForMember(x => x.Categories, opt => opt.Ignore())
+                .ReverseMap()
+                .ForMember(x => x.ProductId, opt => opt.MapFrom(p => p.Id))
+                .ForMember(x => x.Subtotal, opt => opt.Ignore());
+
 
         }
 
