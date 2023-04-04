@@ -31,8 +31,16 @@
                         <p class="card-text"><strong>Descripcion de la Categoria:</strong> @Model.Category.Description</p>
 
 
+                        @if(Model.Quantity != 0)
+                        {
+                            <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@Model.Id" class="btn btn-success">Agregar al carrito</a>
 
-                        <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@Model.Id" class="btn btn-success">Agregar al carrito</a>
+                        }
+                        else
+                        {
+                            <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@Model.Id" class="btn btn-success disabled" role="button" aria-disabled="true">Agregar al carrito</a>
+
+                        }
 
                     </div>
                 </div>

@@ -16,6 +16,8 @@ namespace ECommerce.Application.Interfaces.Services
         Task<SaveProductViewModel> GetByIdAsync(int id);
         Task<ProductDetailsViewModel> GetDetailsAsync(int id);
 
+        Task UpdateProductsQuantityAsync(List<ProductViewModel> productViewModels);
+
         //Obtener todos los datos pero con sus joins
     }
 }

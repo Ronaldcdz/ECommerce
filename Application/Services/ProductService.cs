@@ -69,5 +69,18 @@ namespace ECommerce.Application.Services
             return productDetailsViewModel;
         }
 
+        public async Task UpdateProductsQuantityAsync(List<ProductViewModel> productViewModels)
+        {
+            foreach (var productViewModel in productViewModels)
+            {
+                var productFound = await _productRepository.GetByIdAsync(productViewModel.Id);
+
+                productFound.Quantity -= productViewModel.Quantity;
+                await _productRepository.UpdateAsync(productFound, productFound.Id);
+            }
+
+
+        }
+
     }
 }

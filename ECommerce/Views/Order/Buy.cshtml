@@ -1,0 +1,162 @@
+﻿@using ECommerce.Application.ViewModels.Order
+@using ECommerce.Application.ViewModels.Cart
+@model SaveOrderViewModel
+@{
+    ViewData["Title"] = "Compra";
+}
+
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-6">
+
+            <div class="card">
+
+                <div class="card-header bg-dark text-light">
+                    <h4>Finalizar Compra</h4>
+
+                </div>
+
+                <div class="card-body">
+
+
+                    <form method="post" asp-controller="Order" asp-action="Buy">
+
+                        <div class="mb-3">
+                            <label asp-for="Date" class="form-label">Fecha:</label>
+                            <input asp-for="Date" class="form-control" readonly type="date"/>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label asp-for="OwnerName" class="form-label">Nombre:</label>
+                            <input asp-for="OwnerName" class="form-control" placeholder="Escriba el nombre del usuario" />
+                            <span asp-validation-for="OwnerName" class="text-danger"></span>
+                        </div>
+
+
+
+                        <div class="mb-3">
+                            <label asp-for="ContactNumber" class="form-label">Numero telefonico:</label>
+                            <input asp-for="ContactNumber" class="form-control" placeholder="Escriba el numero del usuario"></input>
+                            <span asp-validation-for="ContactNumber" class="text-danger"></span>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label asp-for="Address" class="form-label">Direccion:</label>
+                            <input asp-for="Address" class="form-control" placeholder="Escriba su direccion completa"></input>
+                            <span asp-validation-for="Address" class="text-danger"></span>
+                        </div>
+
+                          <div class="mb-3">
+                            <label asp-for="CreditCardOwnerName" class="form-label">Nombre Titular de la tarjeta:</label>
+                            <input asp-for="CreditCardOwnerName" class="form-control" placeholder="Escriba el nombre titular de la tarjeta"></input>
+                            <span asp-validation-for="CreditCardOwnerName" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="CreditCardNumber" class="form-label">Numero de la tarjeta:</label>
+                            <input asp-for="CreditCardNumber" class="form-control" placeholder="Escriba el nnumero de la tarjeta"></input>
+                            <span asp-validation-for="CreditCardNumber" class="text-danger"></span>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label asp-for="CreditCardValidity" class="form-label">Fecha Limite de la Tarjeta:</label>
+                            <input asp-for="CreditCardValidity" class="form-control" type="date"></input>
+                            <span asp-validation-for="CreditCardValidity" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="CreditCardCvv" class="form-label">Cvv de la Tarjeta:</label>
+                            <input asp-for="CreditCardCvv" class="form-control" placeholder="Los tres numeros del cvv de la tarjeta"></input>
+                            <span asp-validation-for="CreditCardCvv" class="text-danger"></span>
+                        </div>
+
+
+
+                        <input type="hidden" asp-for="Id" />
+                        <a asp-controller="Cart" asp-action="Index" class="btn btn-warning">Regresar</a>
+
+                        <button type="submit" class="btn btn-primary">Comprar</button>
+
+                    </form>
+
+
+                </div>
+
+            </div>
+        </div>
+
+       
+
+        <div class="col-5">
+            <div class="card shadow-sm mb-3">
+                <h4 class="mt-2 mb-2 text-center">Confirmacion del Pedido</h4>
+
+
+                <div class="card-body">
+                    <h5 class="mb-2">Subtotal: @Model.Subtotal</h5>
+                    <h5 class="mb-2">Impuestos: @Model.Taxes</h5>
+                    <h5 class="mb-2">Total: @Model.Total</h5>
+
+
+
+                </div>
+            </div>
+
+            <div class="card shadow-sm mb-3">
+                <h4 class="mt-2 mb-2 text-center">Lista de productos</h4>
+
+
+                <div class="card-body">
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+
+                                <th></th>
+                                <th>Nombre</th>
+                                <th>Precio</th>
+                                <th>Cantidad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (CartViewModel cart in @Model.CartItems)
+                            {
+                                <tr>
+                                    <td>
+                                        <img class="bd-placeholder-img" width="100" height="100" src="@cart.ImagePath" />
+                                    </td>
+                                    <td>
+                                        @cart.Name
+                                    </td>
+                                    <td>
+                                        @cart.Price
+                                    </td>
+                                    <td>
+                                        @cart.Quantity
+                                    </td>
+
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+
+
+
+
+                </div>
+            </div>
+        </div>
+        </div>
+
+    </div>
+
+    
+
+
+</div>

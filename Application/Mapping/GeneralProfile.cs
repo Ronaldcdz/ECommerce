@@ -2,6 +2,7 @@
 using ECommerce.Application.Models;
 using ECommerce.Application.ViewModels.Cart;
 using ECommerce.Application.ViewModels.Category;
+using ECommerce.Application.ViewModels.Order;
 using ECommerce.Application.ViewModels.Product;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace ECommerce.Application.Mapping
         public GeneralProfile() 
         {
 
+            #region Products
             CreateMap<Product, SaveProductViewModel>()
                 .ForMember(x => x.Categories, opt => opt.Ignore())
                 .ReverseMap()
@@ -39,6 +41,17 @@ namespace ECommerce.Application.Mapping
                 .ForMember(x => x.Orders, opt => opt.Ignore());
 
 
+            CreateMap<ProductViewModel, CartViewModel>()
+                .ForMember(x => x.ProductId, opt => opt.MapFrom(p => p.Id))
+                .ForMember(x => x.Subtotal, opt => opt.Ignore())
+                .ReverseMap()
+                .ForMember(x => x.Id, opt => opt.MapFrom(c => c.ProductId));
+
+
+
+            #endregion
+
+            #region Categories
 
             CreateMap<Category, CategoryViewModel>()
                 .ReverseMap()
@@ -52,7 +65,9 @@ namespace ECommerce.Application.Mapping
             CreateMap<CategoryViewModel, SaveCategoryViewModel>()
                 .ReverseMap();
 
+            #endregion
 
+            #region Cart
 
             CreateMap<CartViewModel, SaveProductViewModel>()
                 .ForMember(x => x.Id, opt => opt.MapFrom(p => p.ProductId))
@@ -61,6 +76,23 @@ namespace ECommerce.Application.Mapping
                 .ReverseMap()
                 .ForMember(x => x.ProductId, opt => opt.MapFrom(p => p.Id))
                 .ForMember(x => x.Subtotal, opt => opt.Ignore());
+
+            #endregion
+
+
+            #region Order
+
+            CreateMap<Order, SaveOrderViewModel>()
+                .ForMember(x => x.CreditCardNumber, opt => opt.Ignore())
+                .ForMember(x => x.CreditCardOwnerName, opt => opt.Ignore())
+                .ForMember(x => x.CreditCardValidity, opt => opt.Ignore())
+                .ForMember(x => x.CreditCardCvv, opt => opt.Ignore())
+                .ForMember(x => x.CartItems, opt => opt.Ignore())
+                .ReverseMap()
+                .ForMember(x => x.Products, opt => opt.Ignore());
+
+
+            #endregion
 
 
         }

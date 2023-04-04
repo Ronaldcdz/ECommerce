@@ -32,7 +32,9 @@ namespace Database
             services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
-            
+            services.AddTransient<IOrderRepository, OrderRepository>();
+            services.AddTransient<IProductOrderRepository, ProductOrderRepository>();
+
         }
     }
 }
