@@ -3,9 +3,9 @@
 @using ECommerce.Application.ViewModels.Cart;
 @inject IHttpContextAccessor httpContext;
 @{
-    List<CartViewModel> cart = httpContext.HttpContext.Session.Get<List<CartViewModel>>("cart");
+    var cart = httpContext.HttpContext.Session.Get<List<CartViewModel>>("cart");
 
-    if(cart == null)
+    if (cart == null)
     {
         cart = new List<CartViewModel>();
     }
@@ -41,6 +41,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="Index">Carrito (@cart.Count())</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark text-end align-bottom align-content-end justify-content-end" asp-area="" asp-controller="Order" asp-action="Index">Compras Hechas</a>
                         </li>
                     </ul>
                 </div>

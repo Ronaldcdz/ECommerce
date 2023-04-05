@@ -72,10 +72,27 @@ namespace ECommerce.Application.Services
             return new ConfirmationOrderViewModel();
         }
 
-        public Task GetAllAsync()
+        public async Task<List<OrderViewModel>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var allOrders = _mapper.Map<List<OrderViewModel>>(await _orderRepository.GetAllAsync());
+
+
+            //Nueva lista con todas las ordenes con los productos pedidos
+            List<OrderViewModel> result = new List<OrderViewModel>();
+
+
+            // Por cada orden se le busca su producto pedido
+            foreach (var order in allOrders)
+            {
+                order.Products = new List<ProductViewModel>();
+                order.Products.AddRange(await _productOrderService.GetAllProductsByOrderIdAsync(order.Id));
+                result.Add(order);
+            }
+
+
+            return result;
         }
+
 
     }
 }

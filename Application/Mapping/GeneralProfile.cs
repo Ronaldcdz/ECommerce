@@ -47,6 +47,19 @@ namespace ECommerce.Application.Mapping
                 .ReverseMap()
                 .ForMember(x => x.Id, opt => opt.MapFrom(c => c.ProductId));
 
+            CreateMap<ProductViewModel, ProductOrder>()
+                .ForMember(x => x.ProductId, opt => opt.MapFrom(p => p.Id))
+                .ForMember(x => x.ProductQuantity, opt => opt.MapFrom(p => p.Quantity))
+                .ForMember(x => x.Product, opt => opt.Ignore())
+                .ForMember(x => x.OrderId, opt => opt.Ignore())
+                .ForMember(x => x.Order, opt => opt.Ignore())
+                .ReverseMap()
+                .ForMember(x => x.Id, opt => opt.MapFrom(p => p.ProductId))
+                .ForMember(x => x.Quantity, opt => opt.MapFrom(p => p.ProductQuantity))
+                .ForMember(x => x.Name, opt => opt.Ignore())
+                .ForMember(x => x.ImagePath, opt => opt.Ignore())
+                .ForMember(x => x.Price, opt => opt.Ignore());
+
 
 
             #endregion
@@ -90,6 +103,13 @@ namespace ECommerce.Application.Mapping
                 .ForMember(x => x.CartItems, opt => opt.Ignore())
                 .ReverseMap()
                 .ForMember(x => x.Products, opt => opt.Ignore());
+
+
+            CreateMap<Order, OrderViewModel>()
+                .ForMember(x => x.Products, opt => opt.Ignore())
+                .ReverseMap()
+                .ForMember(x => x.Products, opt => opt.Ignore());
+
 
 
             #endregion

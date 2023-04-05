@@ -10,5 +10,8 @@ namespace ECommerce.Application.Interfaces.Repositories
     public interface IProductOrderRepository
     {
         Task AddProductsToOrderAsync(List<ProductOrder> productsOrder);
+
+
+        Task<List<ProductOrder>> GetAllProductsByOrderIdAsync(int orderId);
     }
 }

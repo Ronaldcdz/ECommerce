@@ -82,5 +82,12 @@ namespace ECommerce.Application.Services
 
         }
 
+
+        public async Task<ProductViewModel> GetProductInfoByIdAsync(int id)
+        {
+            var product = await _productRepository.GetByIdAsync(id);
+
+            return _mapper.Map<ProductViewModel>(product);
+        }
     }
 }

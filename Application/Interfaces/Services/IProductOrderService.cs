@@ -1,4 +1,5 @@
 ﻿using ECommerce.Application.ViewModels.Order;
+using ECommerce.Application.ViewModels.Product;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,8 @@ namespace ECommerce.Application.Interfaces.Services
     public interface IProductOrderService
     {
         Task AddFromSaveOrderViewModelAsync(SaveOrderViewModel orderViewModel);
+
+
+        Task<List<ProductViewModel>> GetAllProductsByOrderIdAsync(int orderId);
     }
 }

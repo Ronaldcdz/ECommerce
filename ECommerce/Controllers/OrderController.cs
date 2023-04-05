@@ -45,7 +45,10 @@ namespace ECommerce.Controllers
             return View(confirmationView);
         }
 
-
+        public async Task<IActionResult> Index ()
+        {
+            return View(await _orderService.GetAllAsync());
+        }
 
     }
 }

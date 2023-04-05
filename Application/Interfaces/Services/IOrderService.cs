@@ -14,6 +14,6 @@ namespace ECommerce.Application.Interfaces.Services
 
         Task<ConfirmationOrderViewModel> AddOrderAsync(SaveOrderViewModel orderViewModel);
         
-        Task GetAllAsync();
+        Task<List<OrderViewModel>> GetAllAsync();
     }
 }

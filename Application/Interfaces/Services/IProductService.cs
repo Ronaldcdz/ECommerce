@@ -18,6 +18,8 @@ namespace ECommerce.Application.Interfaces.Services
 
         Task UpdateProductsQuantityAsync(List<ProductViewModel> productViewModels);
 
+        Task<ProductViewModel> GetProductInfoByIdAsync(int id);
+
         //Obtener todos los datos pero con sus joins
     }
 }
